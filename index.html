@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ahorcado Imacop</title>
+    <!-- materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body id='teclas_game'>
+
+    <div class='container'>
+      <div class="col s12 center-align" style='background:#eee;'>
+            <h1>Ahorcado</h1>
+
+            <div class="col s12 center-align" style='background:#222; height:400px;'>
+                <br />
+                <a class="waves-effect waves-light btn" id='btn_empezar'>Empezar</a>
+                <a class="waves-effect waves-light btn red" id='btn_reiniciar'>Reiniciar</a>
+
+                <p>
+                  <a class='right margin-right-20 white-text'><span id='txt_oportunidades'>0 </span>Oportunidades</a>
+                  <a class='right margin-right-20 white-text'><span id='txt_encontradas'>0 </span>Encontradas</a>
+                  <a class='left margin-left-20 white-text'><span>0 </span>Segundos</a>
+                </p>
+
+                <div class='col s12 m12 mt letras_blancas' id='div_palabra'></div>
+
+            </div>
+
+      </div>
+    </div>
+
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type='text/javascript' src='main.js'></script>
+  </body>
+</html>

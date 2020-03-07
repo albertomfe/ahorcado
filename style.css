@@ -1,0 +1,36 @@
+.mt{
+  margin-top:40px;
+}
+
+.letras_blancas{
+  color:#fff;
+}
+
+.campo{
+  width: 40px!important;
+}
+
+.margin-right-20{
+  margin-right: 20px;
+}
+.margin-left-20{
+  margin-left: 20px;
+}
+
+.game_over{
+  margin-top:180px;
+  font-size: 82px;
+  color:#E7C94F;
+  font-weight: bold;
+}
+
+.tabla_de_marcador{
+  color:#fff;
+  font-size: 16px;
+}
+
+.info_resultado{
+  font-size: 18px;
+  font-weight: bold;
+  color:#4FC0E7;
+}
