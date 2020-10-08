@@ -1,20 +1,58 @@
       //PREGUNTAS Y RESPUESTAS
-      var palabras=[
-        [ //nivel 0
-          {respuesta: "Riu Jalisco" , pregunta:"Hotel Ubicado en Puerto Vallarta del Grupo Hotelero Riu"},
-          {respuesta: "las Hadas" ,  pregunta:"Hotel Ubicado en Puerto Manzanillo del grupo hd"},
-          {respuesta: "marival residences" ,  pregunta:"Hotel Ubicado en Puerto Vallarta del grupo marival"},
-          {respuesta: "Oro" ,  pregunta:"metal mas valioso de la tierra"}
+        var palabras=[
+        [ //Nivel 0
+          {respuesta: "Oaxaca",pregunta:"¿En Ciudad se encuentra El Arbol de Tule?"},
+          {respuesta: "Monterrey", pregunta:"¿En que ciudad se agrego la ultima sucursal de Imacop?"},
+          {respuesta: "Elige Confianza Elige Imacop",pregunta:"¿Cual es el eslogan de Imacop?"},
+		  {respuesta: "El chihuahua",pregunta:"¿Qué famosa y pequeña raza de perro tiene origen en México?"},
+          {respuesta: "Paris",  pregunta:"¿Dónde se encuentra la famosa Torre Eiffel?"},
+		  {respuesta: "Ocho",  pregunta:"¿Cuantas sucursales cuenta Imacop?"},
+		  {respuesta: "Cancun",  pregunta:"¿Dónde se encuentra el hotel Occidental Tucancún?"},
+		  {respuesta: "Benito Juárez",  pregunta:"¿A qué presidente mexicano se le conoce como Benemérito de las Américas?"}
+		  
+		  
+		  
         ],
-        [ //nivel 1
-          {respuesta: "Moon Palace Cancun" , pregunta:"Hotel Deluxe de cancùn"},
-          {respuesta: "Grand Oasis Palm" ,  pregunta:"Hotel 5 estrellas  de cancùn"},
-          {respuesta: "costa alegre" ,  pregunta:"Hotel 4 estrellas de guayabitos"}
+        [ //Nivel 1
+          {respuesta: "Quintana Roo",pregunta:"¿En que Ciudad se encuentra Bacalar?"},
+          {respuesta: "Grand Oasis Palm",pregunta:"¿Que Hotel cuenta 5 estrellas de cancùn?"},
+          {respuesta: "Costa Alegre", pregunta:"¿Que Hotel cuenta 4 estrellas de Guayabitos?"},
+		  {respuesta: "Chapala", pregunta:"¿Cómo se llama el lago más grande de México?"},
+		  {respuesta: "Veracruz", pregunta:"¿Donde se encuentra el hotel Artisan Family Hotels and Resorts Playa Esmeralda?"},
+		  {respuesta: "Puerto Vallarta", pregunta:"¿Donde se encuentra la Playa Mismaloya?"},
+		  {respuesta: "Revolución Mexicana", pregunta:"¿Que se celebra el 20 de noviembre"},
+		  {respuesta: "Riviera Maya", pregunta:"¿Qué zona turística es la más visitada en México?"}
         ],
-        [ //nivel 2
-          {respuesta: "8" , pregunta:"cuantas Sucursales tiene Imacop"},
-          {respuesta: "imacoptour" ,  pregunta:"cual es la pagina oficial de Imacop"},
-          {respuesta: "guiainteractivadehoteles" ,  pregunta:"Pagina de imacop para vizualizar Hoteles y sus descripciones ,habitaciones, entre otras"}
+        [ //Nivel 2
+		  {respuesta: "Miguel Hidalgo",pregunta:"¿Quién declaró la independencia de México en 1810?"},
+          {respuesta: "Mandiles", pregunta:"¿Cual es el evento de Imacop que inicia a principio del año?"},
+          {respuesta: "Chihuahua", pregunta:"¿En donde se encuentra el famoso tren llamado el Chepe?"},
+          {respuesta: "guiainteractivadehoteles", pregunta:"¿Cual es Pagina de imacop para vizualizar Hoteles y sus descripciones ,habitaciones, entre otras?"},
+		  {respuesta: "treintaydos",pregunta:"¿Cuántos estados tiene México?"},
+		  {respuesta: "Imacoins", pregunta:"¿Cual es el monedero electronico para cambiar premios?"},
+		  {respuesta: "Cuauhtemoc", pregunta:"¿Quién fue el último emperador mexica?"}
+		  {respuesta: "Blitz Virtual", pregunta:"¿Cual es el apartado donde puedes visualizar el hotel de la semana?"}
+		  
+        ],
+		[ //Nivel 3
+          {respuesta: "Corona",pregunta:"¿Cómo se llama la famosa marca de cerveza mexicana que exporta a todo el mundo?"},
+          {respuesta: "Puerto Vallarta",pregunta:"¿Donde se encuentra el hotel Secrets Vallarta Bay?"},
+          {respuesta: "Tequila" ,  pregunta:"¿Cual es el pueblo magico donde realiza el tequila?"},
+		  {respuesta: "Imacoins", pregunta:"¿Cual es el monedero electronico para cambiar premios?"},
+		  {respuesta: "Gran Feria del Viaje", pregunta:"¿Cual es el evento virtual que se hace en imacop?"},
+		  {respuesta: "Cañon del Sumidero", pregunta:"¿Qué famoso y bello cañón se encuentra en Chiapas?"},
+		  {respuesta: "India", pregunta:"¿Donde se encuentra taj mahal?"},
+		  {respuesta: "imacoptour", pregunta:"¿Cual es nuestra pagina oficial de Imacop?"}
+        ],
+		[ //Nivel 4
+          {respuesta: "Teotihuacán",pregunta:"¿En qué antigua ciudad se encuentra la famosa Pirámide del Sol?"},
+          {respuesta: "Villahermosa",pregunta:"¿Donde se encuentra el hotel Marriott Villahermosa?"},
+		  {respuesta: "Siete",  pregunta:"¿Cuantos hoteles cuenta el grupo Decameron?"},
+		  {respuesta: "Italia", pregunta:"¿Qué país tiene forma de bota?"},
+		  {respuesta: "Riviera Nayarit",pregunta:"¿Donde se encuentra el hotel Marival Emotions?"},
+		  {respuesta: "Guerrero",pregunta:"¿En qué estado se encuentra el puerto de Acapulco?"},
+		  {respuesta: "Mazatlan",pregunta:"¿Donde se encuentra el hotel Best Western Posada Freeman Express?"},
+		  {respuesta: "Nopal",pregunta:"¿Dónde se posa el águila que forma parte del escudo nacional de México?"}
         ]
       ];
 
