@@ -30,7 +30,7 @@
           {respuesta: "guiainteractivadehoteles", pregunta:"¿Cual es Pagina de imacop para vizualizar Hoteles y sus descripciones ,habitaciones, entre otras?"},
 		  {respuesta: "treintaydos",pregunta:"¿Cuántos estados tiene México?"},
 		  {respuesta: "Imacoins", pregunta:"¿Cual es el monedero electronico para cambiar premios?"},
-		  {respuesta: "Cuauhtemoc", pregunta:"¿Quién fue el último emperador mexica?"}
+		  {respuesta: "Cuauhtemoc", pregunta:"¿Quién fue el último emperador mexica?"},
 		  {respuesta: "Blitz Virtual", pregunta:"¿Cual es el apartado donde puedes visualizar el hotel de la semana?"}
 		  
         ],
