@@ -24,6 +24,19 @@
   font-weight: bold;
 }
 
+.welcome{
+  margin-top:180px;
+  font-size: 82px;
+  color:#2DE1C8;
+  font-weight: bold;
+}
+.felicidades{
+  margin-top:180px;
+  font-size: 82px;
+  color:#79E12D;
+  font-weight: bold;
+}
+
 .tabla_de_marcador{
   color:#fff;
   font-size: 16px;
@@ -33,4 +46,14 @@
   font-size: 18px;
   font-weight: bold;
   color:#4FC0E7;
+}
+.info_negativo{
+  font-size: 18px;
+  font-weight: bold;
+  color:#E13D2D;
+}
+
+
+audio{
+  display:none;
 }

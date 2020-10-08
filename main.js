@@ -13,8 +13,8 @@
         ],
         [ //nivel 2
           {respuesta: "8" , pregunta:"cuantas Sucursales tiene Imacop"},
-          {respuesta: "imacoptour.com" ,  pregunta:"cual es la pagina oficial de Imacop"},
-          {respuesta: "guiainteractivadehoteles.com" ,  pregunta:"Pagina de imacop para vizualizar Hoteles y sus descripciones ,habitaciones, entre otras"}
+          {respuesta: "imacoptour" ,  pregunta:"cual es la pagina oficial de Imacop"},
+          {respuesta: "guiainteractivadehoteles" ,  pregunta:"Pagina de imacop para vizualizar Hoteles y sus descripciones ,habitaciones, entre otras"}
         ]
       ];
 
@@ -39,7 +39,7 @@
 
 
 
-      //INICIAR EL JUEGO ----------------------------------------------------------------------------------------------
+       //INICIAR EL JUEGO ----------------------------------------------------------------------------------------------
        var btn_presion=document.querySelector("#btn_empezar");
        btn_presion.addEventListener('click', function(){
              //si esta activo el local storage empezar variables locales
@@ -55,14 +55,14 @@
                   //se declaran e inizializan las variables locales en nivel (1)
                   localStorage.setItem('nivel_ahorcado',1);
                   localStorage.setItem('oportunidades_ahorcado',5);
-                  localStorage.setItem('marcador_ahorcado',[{nivel:1,encontradas:0,equivocadas:0}]);//crear variable marcador
 
-                  console.log(localStorage.getItem("nivel_ahorcado"));
+                  //console.log(JSON.parse(localStorage.getItem("marcador_ahorcado")));
 
                   var nivel_actual=localStorage.getItem("nivel_ahorcado");
                   establecer_nivel(nivel_actual);
 
                   crear_ecenario();//proseguir el juego
+                  colocar_imagen();//Iniciar la  imagen
                }
              }//se puede usar localstorage
        });
@@ -71,15 +71,20 @@
 
 
 
-
        //si el juego esta comenzado con el nivel guardado y la palabra continuar
        //CONTINUAR EL JUEGO DONDE SE QUEDO
        if(localStorage.getItem("nivel_ahorcado") && localStorage.getItem("pregunta_bus_ahorcado"))
        {
-         verificar_estado_juego();
+         finalizado();//cer si ya paso el juego completo
+         verificar_estado_juego();//ver si no perdio
        }
-
-
+       else{
+         $("#div_palabra").empty();
+         $("#div_palabra").append(`
+            <span class='welcome' >Bienvenido! </span>
+            <br>
+        `);
+       }
 
 
 
@@ -90,10 +95,10 @@
 
          $("#btn_empezar").hide();
          $("#div_palabra").empty();
-         console.log('CONTINUANDO..');
+         /*console.log('CONTINUANDO..');
          console.log('nivel_ahorcado',localStorage.getItem("nivel_ahorcado"));
          console.log('pregunta_bus_ahorcado=>',localStorage.getItem("pregunta_bus_ahorcado"));
-         console.log('respuesta_bus_ahorcado=>',localStorage.getItem("respuesta_bus_ahorcado"));
+         console.log('respuesta_bus_ahorcado=>',localStorage.getItem("respuesta_bus_ahorcado"));*/
 
            //Generar Diviciones
            var num_letras=localStorage.getItem("respuesta_bus_ahorcado").length;
@@ -109,12 +114,6 @@
 
 
             //VERIFICAR SI LA CONSOLA DE VIDEO JUEGO NO TIENE ELEMENTOS CREADOS CREARLOS
-              console.log('HTML=',document.getElementById('div_palabra').innerHTML);
-              if(document.getElementById('div_palabra').innerHTML) {
-                console.log('Yes content');
-              }
-              else
-              {
                 //DIV VACIO
                 $("#div_palabra").append(`
                    <h2>Lvl `+nivel_actual+`</h2>
@@ -133,14 +132,11 @@
                        <input class='campo' readonly type='text' id='put_`+i+`' value='' >
                    `);
                 }
-              }//CREANDO ELEMENTOS
+
 
 
        }
        //------------------continue---game-----------------------------------------
-
-
-
 
 
 
@@ -196,8 +192,10 @@
                     if(errores_acumulados==num_letras){
                       //restar una oportunidad
                       oportunidades--;
+                      sonido_error();//audio de error
                       //Mostrar Oportunidades Restantes
                       localStorage.setItem('oportunidades_ahorcado',oportunidades);
+                      colocar_imagen();
                       document.querySelector("#txt_oportunidades").innerHTML=oportunidades+" ";
                       //verificar si no a perdido la Partida
                       verificar_estado_juego();
@@ -216,36 +214,38 @@
 
         //VERIFICA SI SE A PERDIDO O AVANZADO DE NIVEL
         function verificar_estado_juego()
-        { //SOLO SI ESTA ACTIVO EL JUEGO
-          if(localStorage.getItem("nivel_ahorcado"))
-          {
-            var respuesta=localStorage.getItem("respuesta_bus_ahorcado").toUpperCase();
-            var num_letras=respuesta.length;
-            var oportunidades=localStorage.getItem("oportunidades_ahorcado");
-            var atinadas=localStorage.getItem("atinadas_ahorcado");
+        {   //SOLO SI ESTA ACTIVO EL JUEGO
+            if(localStorage.getItem("nivel_ahorcado"))
+            {
+              var respuesta=localStorage.getItem("respuesta_bus_ahorcado").toUpperCase();
+              var num_letras=respuesta.length;
+              var oportunidades=localStorage.getItem("oportunidades_ahorcado");
+              var atinadas=localStorage.getItem("atinadas_ahorcado");
 
-            if(oportunidades<=0){
-              $("#btn_empezar").hide();
-              gameover();
+              if(oportunidades<=0){
+                $("#btn_empezar").hide();
+                gameover();
+              }
             }
           }
-        }
 
 
 
-       //REINICIAR JUEGO Y MARCADORES
-       var btn_presion=document.querySelector("#btn_reiniciar");
+        //REINICIAR JUEGO Y MARCADORES
+        var btn_presion=document.querySelector("#btn_reiniciar");
         btn_presion.addEventListener('click', function()
         {
           $("#btn_empezar").show();
           $("#div_palabra").empty();
           //si existen las variables reiniciarlas
           if(localStorage.getItem("nivel_ahorcado")){
+            //eliminar variables
             localStorage.removeItem('nivel_ahorcado');
             localStorage.removeItem('pregunta_bus_ahorcado');
             localStorage.removeItem('respuesta_bus_ahorcado');
             localStorage.removeItem('oportunidades_ahorcado');
             localStorage.removeItem('atinadas_ahorcado');
+            localStorage.removeItem('marcador_ahorcado');
 
             document.querySelector("#txt_oportunidades").innerHTML=5+" ";
             document.querySelector("#txt_encontradas").innerHTML=0+" ";
@@ -260,35 +260,192 @@
          if(localStorage.getItem("nivel_ahorcado"))
          {
            var nivel_actual=localStorage.getItem("nivel_ahorcado");
+           //obtener oportunidades y atinadas
+           var oportunidades=localStorage.getItem("oportunidades_ahorcado");
+           var atinadas=localStorage.getItem("atinadas_ahorcado");
+
            localStorage.setItem('atinadas_ahorcado',0);//reiniciar los atinados
            document.querySelector("#txt_encontradas").innerHTML=0+" ";
+
+
+           //ESTABLECER EL NUEVO MARCADOR si existe localstorage
+           if(localStorage.getItem("marcador_ahorcado"))
+           {
+             var marcadores=JSON.parse(localStorage.getItem("marcador_ahorcado"));//obtener marcador pasado
+             marcadores.push( {"nivel"  :nivel_actual, "encontrados" : atinadas, "oportunidades" : oportunidades} );
+             localStorage.setItem('marcador_ahorcado', JSON.stringify(marcadores));
+           }
+           else
+           {
+             marcadores=[];
+             marcadores.push( {"nivel"  :1, "encontrados" : atinadas, "oportunidades" : oportunidades} );
+             localStorage.setItem('marcador_ahorcado', JSON.stringify(marcadores));
+           }
+
 
            nivel_actual++;
            localStorage.setItem('nivel_ahorcado',nivel_actual);
            establecer_nivel(nivel_actual);
-           alert('Felicidades pasas al Nivel ');
            crear_ecenario();//Continuar el Siguiente Nivel
+           sonido_nivel();
          }
        }
-
 
 
 
         //GAME   OVER
        function gameover()
        {
-         console.log('GAME OVER');
+         //console.log('game over');
+         //console.log('marcador',JSON.parse(localStorage.getItem("marcador_ahorcado")));
          var nivel_actual=localStorage.getItem("nivel_ahorcado");
 
-         //alert('Perdiste');
-         $("#div_palabra").empty();
-         $("#div_palabra").append(`
-            <span class='game_over' >GAME OVER </span>
-            <br>
-            --- Tu Marcador --
-            <br>
-            <p class='tabla_de_marcador'>
-              llegaste al Nivel <span class='info_resultado'> `+nivel_actual+`</span>
-            </p>
-        `);
+         perdisteAud();
+         if(localStorage.getItem("marcador_ahorcado")!=null)
+         {
+           var marcadores=JSON.parse(localStorage.getItem("marcador_ahorcado"));//obtener marcadores
+
+           //alert('Perdiste');
+           $("#div_palabra").empty();
+           $("#div_palabra").append(`
+              <span class='game_over' >GAME OVER </span>
+              <br>
+              --- Tu Marcador --
+              <br>
+              <p class='tabla_de_marcador'>
+                llegaste al Nivel <span class='info_resultado'> `+nivel_actual+`</span>
+              </p>
+          `);
+
+          var tabla=`
+          <div class='container'>
+            <table >
+              <thead >
+                <tr>
+                  <th class='center-align'>Nivel</th>
+                  <th class='center-align'>Encontrados</th>
+                  <th class='center-align'>Oportunidades</th>
+                </tr>
+              </tead>
+              <tbody>
+            `;
+
+             //console.log('tam marcador=',marcadores.length);
+             var tam_marcador=marcadores.length||0;
+             for(var i=0;i<tam_marcador;i++)
+             {
+               tabla+=`
+                 <tr>
+                    <td class='center-align'>`+marcadores[i].nivel+`</td>
+                    <td class='center-align'>`+marcadores[i].encontrados+`</td>
+                    <td class='center-align'>`+marcadores[i].oportunidades+`</td>
+                 </tr>
+               `;
+             }
+
+             tabla+=`
+               </tbody>
+              </table>
+             `;
+             $("#div_palabra").append(tabla);
+         }
+         else{
+           $("#div_palabra").empty();
+           $("#div_palabra").append(`
+              <span class='game_over' >GAME OVER </span>
+              <br>
+          `);
+         }
+
+     }
+
+
+
+
+       function finalizado()
+       {
+
+          var total_niveles=palabras.length;
+          if(localStorage.getItem("nivel_ahorcado")>total_niveles)
+          {
+
+            var nivel_actual=localStorage.getItem("nivel_ahorcado");
+            var marcadores=JSON.parse(localStorage.getItem("marcador_ahorcado"));//obtener marcadores
+            //alert('Perdiste');
+            $("#div_palabra").empty();
+            $("#div_palabra").append(`
+               <span class='felicidades' >FELICIDADES! </span>
+               <br>
+               ---Tu Marcador --
+               <br>
+               <p class='tabla_de_marcador'>
+                 llegaste al Nivel <span class='info_resultado'> `+nivel_actual+`</span>
+               </p>
+           `);
+
+
+           var tabla=`
+           <div class='container'>
+             <table >
+               <thead >
+                 <tr>
+                   <th class='center-align'>Nivel</th>
+                   <th class='center-align'>Encontrados</th>
+                   <th class='center-align'>Oportunidades</th>
+                 </tr>
+               </tead>
+               <tbody>
+             `;
+
+            //console.log('tam marcador=',marcadores.length);
+            var tam_marcador=marcadores.length;
+            for(var i=0;i<tam_marcador;i++)
+            {
+              tabla+=`
+                <tr>
+                   <td class='center-align'>`+marcadores[i].nivel+`</td>
+                   <td class='center-align'>`+marcadores[i].encontrados+`</td>
+                   <td class='center-align'>`+marcadores[i].oportunidades+`</td>
+                </tr>
+              `;
+            }
+
+            tabla+=`
+              </tbody>
+             </table>
+            `;
+            $("#div_palabra").append(tabla);
+
+
+            //alert('Felicidades Has Superado el Juego Completo');
+          }
+       }
+
+
+       function colocar_imagen(){
+         count_imagen=localStorage.getItem("oportunidades_ahorcado");
+         console.log(count_imagen);
+         document.getElementById('img_ahorcado').setAttribute( 'src', "img/ahorcado"+count_imagen+".jpg" );
+       }
+
+       /*Audios*/
+       function sonido_nivel()
+       {
+         var audio = document.getElementById("lvlup");
+         audio.play();
+       }
+       function sonido_error()
+       {
+         var audio = document.getElementById("errorAud");
+         audio.play();
+       }
+       function perdisteAud()
+       {
+         var audio = document.getElementById("gameoverAud");
+         audio.play();
+       }
+       function ganasteAud()
+       {
+         var audio = document.getElementById("ganasteAud");
+         audio.play();
        }

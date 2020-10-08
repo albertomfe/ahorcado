@@ -14,28 +14,40 @@
       <div class="col s12 center-align" style='background:#eee;'>
             <h1>Ahorcado</h1>
 
-            <div class="col s12 center-align" style='background:#222; height:400px;'>
+            <div class="col s12 center-align" style='background:#000; min-height:400px;'>
                 <br />
                 <a class="waves-effect waves-light btn" id='btn_empezar'>Empezar</a>
                 <a class="waves-effect waves-light btn red" id='btn_reiniciar'>Reiniciar</a>
 
                 <p>
-                  <a class='right margin-right-20 white-text'><span id='txt_oportunidades'>0 </span>Oportunidades</a>
-                  <a class='right margin-right-20 white-text'><span id='txt_encontradas'>0 </span>Encontradas</a>
-                  <a class='left margin-left-20 white-text'><span>0 </span>Segundos</a>
+                  <a class='left margin-right-20 white-text'><span class='info_negativo' id='txt_oportunidades'>0 </span>Oportunidades</a>
+                  <a class='right margin-right-20 white-text'><span class='info_resultado' id='txt_encontradas'>0 </span>Encontradas</a>
+                  <a class='center margin-left-20 white-text'><span>0 </span>Segundos</a>
                 </p>
-
-                <div class='col s12 m12 mt letras_blancas' id='div_palabra'></div>
+                <br />
+                <div class='row'>
+                  <div class='col s4 m2 l2 mt letras_blancas' >
+                    <img id='img_ahorcado' src='img/ahorcado5.jpg' />
+                  </div>
+                  <div class='col s8 m10 l10 mt letras_blancas' id='div_palabra'></div>
+                </div>
 
             </div>
 
       </div>
     </div>
 
-
+    <audio id="lvlup" controls><source type="audio/wav" src="./sounds/nuevo_nivel.mp3"></audio>
+    <audio id="errorAud" controls><source type="audio/wav" src="./sounds/error.mp3"></audio>
+    <audio id="gameoverAud" controls><source type="audio/wav" src="./sounds/gameover.mp3"></audio>
+    <audio id="ganasteAud" controls><source type="audio/wav" src="./sounds/felicidades.mp3"></audio>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type='text/javascript' src='main.js'></script>
+    <script>
+
+      //sonido_nivel();
+    </script>
   </body>
 </html>
